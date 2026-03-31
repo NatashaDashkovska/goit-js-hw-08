@@ -2,7 +2,7 @@ const throttle = require('lodash.throttle');
 
 const formRef = document.querySelector('.feedback-form');
 const STORAGE_KEY = 'feedback-form-state';
-const previousData = localStorage.getItem('STORAGE_KEY');
+const previousData = localStorage.getItem(STORAGE_KEY);
 
 formRef.addEventListener('input', () => throttledCreateData(formRef));
 formRef.addEventListener('submit', submitForm);
@@ -27,7 +27,7 @@ function createData(form) {
   const formData = new FormData(form);
   const data = Object.fromEntries(formData.entries());
 
-  localStorage.setItem('STORAGE_KEY', JSON.stringify(data));
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
 }
 
 const throttledCreateData = throttle(createData, 1000);
@@ -39,5 +39,5 @@ function submitForm(event) {
   console.log('Submitted data:', Object.fromEntries(formData.entries()));
 
   formRef.reset();
-  localStorage.removeItem('STORAGE_KEY');
+  localStorage.removeItem(STORAGE_KEY);
 }
